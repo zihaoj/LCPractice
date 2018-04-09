@@ -1,0 +1,318 @@
+----------------------------------------------------------------------------------------------------------------------------------
+8. String to Integer (atoi)
+Implement atoi to convert a string to an integer.
+
+Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.
+
+Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.
+
+A:
+quite useless test
+
+just to notice for python we can use 
+(1) .isdigit for character 
+(2) ord() gives the number representation of a single length character
+
+----------------------------------------------------------------------------------------------------------------------------------
+56. Merge Intervals
+Given a collection of intervals, merge all overlapping intervals.
+
+For example,
+Given [1,3],[2,6],[8,10],[15,18],
+return [1,6],[8,10],[15,18].
+
+A:
+sort first with lambda function
+then just merge 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+62. Unique Paths
+A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+How many possible unique paths are there?
+
+A:
+return fact(m+n-2)/( fact(m-1)*fact(n-1)  )
+or just DP
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+62. Unique Paths II
+Follow up for "Unique Paths":
+Now consider if some obstacles are added to the grids. How many unique paths would there be?
+An obstacle and empty space is marked as 1 and 0 respectively in the grid.
+For example,
+There is one obstacle in the middle of a 3x3 grid as illustrated below.
+[
+  [0,0,0],
+  [0,1,0],
+  [0,0,0]
+]
+The total number of unique paths is 2.
+Note: m and n will be at most 100.
+
+
+A:
+use DP, essential to realize that we rely on the bounds [x,0] and [0,y] to do induction. 
+path [i][j]= path[i-1][j]+path[i][j-1]
+Hence need to intialize them to be 0 if there is an obstacle behind. 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+78. Subsets
+
+Given a set of distinct integers, nums, return all possible subsets (the power set).
+Note: The solution set must not contain duplicate subsets.
+
+
+A:
+first put the intergers into set
+then loop over elements and create power set by recursion
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+142. Linked List Cycle II
+Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+Note: Do not modify the linked list.
+Follow up:
+Can you solve it without using extra space?
+
+
+A:
+tortoise and hare again
+note that we can nest the two while.
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+152. Maximum Product Subarray
+Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+For example, given the array [2,3,-2,4],
+the contiguous subarray [2,3] has the largest product = 6.
+
+A:
+modification of Kadane’s algorithm for largest sum
+
+If we don't have negative values, it's obvious that we can just use Kadane's directly
+i.e. define a variable localMax(i) to be the largest product up to i'th position
+where localMax(i+1) = Max(localMax(i), num[i+1])
+And we also keep a global largest value to be globalMax 
+
+If we have the negative values, then we need to take care of the negative values as well
+so we keep track of a minimum
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+216. Combination Sum III
+Find all possible combinations of k numbers that add up to a number n, g
+iven that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+
+A:
+use recursion
+Note:
+(1) Every time pass in one list to the next step and if satisfies the requirement add to the solution; Don't over think about the problem
+(2) Shrink the tree size for each search. 
+(3) Note carefully about the k value 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+238. Product of Array Except Self
+Given an array of n integers where n > 1, nums, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].
+Solve it without division and in O(n).
+For example, given [1,2,3,4], return [24,12,8,6].
+
+A:
+two passes, first get the products for list_1= [ a2, a2a3, a2a3, ..., a2a3...an]
+remember to shift the products
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+287. Find the Duplicate Number
+Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
+
+Note:
+You must not modify the array (assume the array is read only).
+You must use only constant, O(1) extra space.
+Your runtime complexity should be less than O(n2).
+There is only one duplicate number in the array, but it could be repeated more than once.
+
+
+A:
+If no constraints
+(1) sort then loop, easy, space complexity is O(1) or O(n) while time complexity is O(nlogn)
+(2) use set to store visted items, space complexity is O(n) and time complexity is O(n)
+        
+        
+To show we must have duplicate is easy (pigeon hole)
+Since 0 is an index and 0 is not in the range, we hence must have a cycle.         
+        
+use Floyd's tortoise and hare algorithm for circle detection gives O(n) run time and O(1) storage
+        
+Algorithm: 
+        
+Phase 1: for a sequence entering cycles from element x_m and length of cycle being l, 
+we must have for i=k*l>=m, x_i = x_2i. Therefore we just need to keep track of two pointers, one moves forward
+one step and the other moves forward two steps at a time. Once they meet we know that we are in a random point
+n on the cycle
+        
+Phase 2: to find the enterting point of the cycle. We reset tortoise to point 0 and keep hare at n
+The distance between them is constantly 2l if we now move both of them at same speed. 
+By the time tortoise reachs m, hare will be at m+2l. Therefore we find the entering point. 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+357. Count Numbers with Unique Digits
+Given a non-negative integer n, count all numbers with unique digits, x, where 0 ≤ x < 10n.
+Example:
+Given n = 2, return 91. (The answer should be the total numbers in the range of 0 ≤ x < 100, excluding [11,22,33,44,55,66,77,88,99])
+
+A:
+easy counting for n = 0, return 1
+for n>=1, the first digits takes 9 values the rest takes 9, 8, 7 etc. 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+423. Reconstruct Original Digits from English
+Given a non-empty string containing an out-of-order English representation of digits 0-9, output the digits in ascending order.
+
+Note:
+Input contains only lowercase English letters.
+Input is guaranteed to be valid and can be transformed to its original digits. That means invalid inputs such as "abc" or "zerone" are not permitted.
+Input length is less than 50,000.
+
+
+A:
+important thing is to notice we can calculate the numbers based on the appearances of characters
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+422. Find All Duplicates in an Array
+Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+Find all the elements that appear twice in this array.
+Could you do it without extra space and in O(n) runtime?
+
+A:
+Important to realize that the integers are always less than the size of the array, 
+Hence we can index them to be between 0 and n-1
+Then we apply polarity to the existing array
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+495. Teemo Attacking
+In LOL world, there is a hero called Teemo and his attacking can make his enemy Ashe be in poisoned condition. Now, given the Teemos attacking ascending time series towards Ashe and the poisoning time duration per Teemos attacking, you need to output the total time that Ashe is in poisoned condition.
+You may assume that Teemo attacks at the very beginning of a specific time point, and makes Ashe be in poisoned condition immediately.
+
+A:
+this is rather easy
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+523. Continuous Subarray Sum
+Given a list of non-negative numbers and a target integer k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to the multiple of k, that is, sums up to n*k where n is also an integer.
+
+A:
+looks easy but has a lot  corner cases
+
+to deal with k==0, we need to count number of continuous 0's
+to deal with k!=0, remember of check continuos 0's as well
+
+in general use the same idea as keep sum up to i, and check all the remainders of A[:j] for j<i. 
+If remainder[j] == remainder[i], then we found a sum. 
+
+Important to initialize the map to have 1 count for remainder 0
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+526. Beautiful arrangements
+Suppose you have N integers from 1 to N. We define a beautiful arrangement as an array that is constructed by these N numbers successfully if one of the following is true for the ith position (1 <= i <= N) in this array:
+
+The number at the ith position is divisible by i.
+i is divisible by the number at the ith position.
+Now given N, how many beautiful arrangements can you construct?
+
+A:
+constructive DP with memorization
+search for permutations which would work
+
+tuple is immutable hence hashable
+set is mutable hence not hashable !!!!!
+enumerate gives both index and object
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+541. Reverse String II
+Given a string and an integer k, you need to reverse the first k characters for every 2k characters counting from the start of the string. If there are less than k characters left, reverse all of them. If there are less than 2k but greater than or equal to k characters, then reverse the first k characters and left the other as original.
+
+A:
+same thought as reverse string, just need to discuss different cases. 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+560. Subarray Sum Equals K
+Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
+
+A:
+Two ways to do:
+(1) is to keep the cumulative sum and loop over all sub arrays, taking O(n^2) time and O(1) space
+(2) is to use hash map to record the sum of elements up to nums[i]
+    we can find subarrays with sum k by checking nums[i]-nums[j]==k for j<i
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+565. zero-indexed array A of length N contains all integers from 0 to N-1. Find and return the longest length of set S, where S[i] = {A[i], A[A[i]], A[A[A[i]]], ... } subjected to the rule below.
+Suppose the first element in S starts with the selection of element A[i] of index = i, the next element in S should be A[A[i]], and then A[A[A[i]]]… By that analogy, we stop adding right before a duplicate element occurs in S.
+
+A:
+use dfs nothing is fancy
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+667. Nice Array
+Given two integers n and k, you need to construct a list which contains n different positive integers ranging from 1 to n and obeys the following requirement:
+Suppose this list is [a1, a2, a3, ... , an], then the list [|a1 - a2|, |a2 - a3|, |a3 - a4|, ... , |an-1 - an|] has exactly k distinct integers.
+
+If there are multiple answers, print any of them.
+
+A:
+for 1 to n-k-1 we don't do anything
+for n-k+1 to n, we have [n-k, n, n-k+1, n-1, ...], we get difference k, k-1, k-2, to 1 etc. 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+713. Subarray Product Less Than K
+Your are given an array of positive integers nums.
+Count and print the number of (contiguous) subarrays where the product of all the elements in the subarray is less than k.
+
+A:
+if array[start:end] works then anything within the array works
+every time increment end +1 and check the cumulative product
+if product <K, count += (end-start)
+else: move start to start +1 and check again
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+714. Your are given an array of integers prices, for which the i-th element is the price of a given stock on day i; and a non-negative integer fee representing a transaction fee.
+You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction. You may not buy more than 1 share of a stock at a time (ie. you must sell the stock share before you buy again.)
+Return the maximum profit you can make.
+
+A:
+Need O(N) time
+keep three things signal, sell and buy
+
+loop through the array:
+   ####be super careful about the update order
+
+   if current price >sell and current price > sell+buy:
+     update sell
+        
+   if buy>sell+fee:
+     start to look forward and see if we have another drop back of price with p+fee<buy
+        
+   if current price <buy:
+     update buy
