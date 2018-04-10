@@ -38,7 +38,7 @@ or just DP
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
-62. Unique Paths II
+63. Unique Paths II
 Follow up for "Unique Paths":
 Now consider if some obstacles are added to the grids. How many unique paths would there be?
 An obstacle and empty space is marked as 1 and 0 respectively in the grid.
@@ -57,6 +57,21 @@ A:
 use DP, essential to realize that we rely on the bounds [x,0] and [0,y] to do induction. 
 path [i][j]= path[i-1][j]+path[i][j-1]
 Hence need to intialize them to be 0 if there is an obstacle behind. 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+75. Sort Colors
+
+Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.
+Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.
+Note:
+You are not suppose to use the library's sort function for this problem.
+
+A:
+many ways to approach; with O(n) space we can just count and expand out the list
+with O(1) space:
+     first trial, two pass, loop through the list swap first 0's to the begining, then swap 2's to the end
+     second approach: keep to counters of boundaries i, j for 0 and 1; loop over and fill elements according to boundaries;
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -129,6 +144,19 @@ remember to shift the products
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
+280. Wiggle Sort
+Given an unsorted array nums, reorder it in-place such that nums[0] <= nums[1] >= nums[2] <= nums[3]....
+For example, given nums = [3, 5, 2, 1, 6, 4], one possible answer is [1, 6, 2, 5, 3, 4].
+
+
+A:
+initial trial, very shitty solution; Sort first then combine
+second way:
+note that we can do in O(n) time
+if we are sorting less, i.e. a[i]<a[i+1], then the next sorting greater will make the swap iff a[i+2]>= a[i+1] and hence the currrent swap is still valid
+
+
+----------------------------------------------------------------------------------------------------------------------------------
 287. Find the Duplicate Number
 Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
 
@@ -171,6 +199,20 @@ Given n = 2, return 91. (The answer should be the total numbers in the range of 
 A:
 easy counting for n = 0, return 1
 for n>=1, the first digits takes 9 values the rest takes 9, 8, 7 etc. 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+370. Range Addition
+Assume you have an array of length n initialized with all 0's and are given k update operations.
+Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
+Return the modified array after all k operations were executed.
+
+
+A:
+could use naive approach but takes O(k*n) 
+two pass cumulative sum : O(k+n)
+for an array that has  A[start] += inc and A[end+1] -= inc
+second path keep a sum and fill in the new array with the cumulative sum        
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -243,6 +285,37 @@ set is mutable hence not hashable !!!!!
 enumerate gives both index and object
 
 
+----------------------------------------------------------------------------------------------------------------------------------
+531. Lonely Pixel I
+
+Given a picture consisting of black and white pixels, find the number of black lonely pixels.
+The picture is represented by a 2D char array consisting of 'B' and 'W', which means black and white pixels respectively.
+A black lonely pixel is character 'B' that located at a specific position where the same row and same column don't have any other black pixels.
+
+A:
+key points are that we cannot do better than O(mn). Need to look through cols and rows for sure.
+Then keep dicts for both cols and rows to count the number of 'B' in each row and col
+Then output the min of row and cols with having 1 "B"
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+533. Lonely Pixel II
+Given a picture consisting of black and white pixels, and a positive integer N, find the number of black pixels located at some specific row R and column C that align with all the following rules:
+
+Row R and column C both contain exactly N black pixels.
+For all rows that have a black pixel at column C, they should be exactly the same as row R
+The picture is represented by a 2D char array consisting of 'B' and 'W', which means black and white pixels respectively.
+
+
+A:
+since we need the exact patterns of the rows, 
+we need to use hash map for the patterns which satsfy the row count requirement
+for the full loop we also store all the column counts
+
+then loop through all the patterns and see which columns satisfy the N counts
+for each column satisfying the requirement count += N
+
+
 
 ----------------------------------------------------------------------------------------------------------------------------------
 541. Reverse String II
@@ -250,7 +323,6 @@ Given a string and an integer k, you need to reverse the first k characters for 
 
 A:
 same thought as reverse string, just need to discuss different cases. 
-
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
