@@ -1,4 +1,13 @@
 ----------------------------------------------------------------------------------------------------------------------------------
+2. Add Two Numbers
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+A:
+Keep the carry over and indexing, should be easy
+
+
+----------------------------------------------------------------------------------------------------------------------------------
 8. String to Integer (atoi)
 Implement atoi to convert a string to an integer.
 
@@ -12,6 +21,7 @@ quite useless test
 just to notice for python we can use 
 (1) .isdigit for character 
 (2) ord() gives the number representation of a single length character
+
 
 ----------------------------------------------------------------------------------------------------------------------------------
 56. Merge Intervals
@@ -57,6 +67,20 @@ A:
 use DP, essential to realize that we rely on the bounds [x,0] and [0,y] to do induction. 
 path [i][j]= path[i-1][j]+path[i][j-1]
 Hence need to intialize them to be 0 if there is an obstacle behind. 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+67. Add Binary
+Given two binary strings, return their sum (also a binary string).
+For example,
+a = "11"
+b = "1"
+Return "100".
+
+
+A:
+one pass; keep track of the carry over 
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -239,6 +263,24 @@ A:
 Important to realize that the integers are always less than the size of the array, 
 Hence we can index them to be between 0 and n-1
 Then we apply polarity to the existing array
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+490. The Maze
+
+There is a ball in a maze with empty spaces and walls. The ball can go through empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
+
+Given the ball's start position, the destination and the maze, determine whether the ball could stop at the destination.
+
+The maze is represented by a binary 2D array. 1 means the wall and 0 means the empty space. You may assume that the borders of the maze are all walls. The start and destination coordinates are represented by row and column indexes.
+
+
+A:
+equivalent to finding a connected components, just dfs
+preprocess to expand maze to include boundary
+be very careful with the statement. the ball can be rolled until it sees an obstacle.
+one thought is that for rolling based boundary determination, better to use while and avoid tough indexing
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
