@@ -110,6 +110,26 @@ first put the intergers into set
 then loop over elements and create power set by recursion
 
 
+----------------------------------------------------------------------------------------------------------------------------------
+86. Partition List
+
+Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+You should preserve the original relative order of the nodes in each of the two partitions.
+For example,
+Given 1->4->3->2->5->2 and x = 3,
+return 1->2->2->4->3->5.
+
+
+A:
+Purely manipulation of linked list. 
+
+Initialize a header and a moving list for both left and right sets with dummy node
+while the moving list moves forward, the header stays at the original 
+value and can be used to link two sets together
+
+left.next = h2.next # links two sets
+return h1.next get rid off the starting dummy node
+
 
 ----------------------------------------------------------------------------------------------------------------------------------
 142. Linked List Cycle II
@@ -212,6 +232,27 @@ n on the cycle
 Phase 2: to find the enterting point of the cycle. We reset tortoise to point 0 and keep hare at n
 The distance between them is constantly 2l if we now move both of them at same speed. 
 By the time tortoise reachs m, hare will be at m+2l. Therefore we find the entering point. 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+328. Odd Even Linked List
+Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
+
+You should try to do it in place. The program should run in O(1) space complexity and O(nodes) time complexity.
+
+Example:
+Given 1->2->3->4->5->NULL,
+return 1->3->5->2->4->NULL.
+
+Note:
+The relative order inside both the even and odd groups should remain as it was in the input. 
+The first node is considered odd, the second node even and so on ...
+
+A:
+Linked list manipulation. Note it's about the position polarity not the value polarity
+just have to be very careful what's being linked and not
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -430,3 +471,25 @@ loop through the array:
         
    if current price <buy:
      update buy
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+723. Candy Crush
+This question is about implementing a basic elimination algorithm for Candy Crush.
+
+Given a 2D integer array board representing the grid of candy, different positive integers board[i][j] represent different types of candies. A value of board[i][j] = 0 represents that the cell at position (i, j) is empty. The given board represents the state of the game following the player's move. Now, you need to restore the board to a stable state by crushing candies according to the following rules:
+
+If three or more candies of the same type are adjacent vertically or horizontally, "crush" them all at the same time - these positions become empty.
+After crushing all candies simultaneously, if an empty space on the board has candies on top of itself, then these candies will drop until they hit a candy or bottom at the same time. (No new candies will drop outside the top boundary.)
+After the above steps, there may exist more candies that can be crushed. If so, you need to repeat the above steps.
+If there does not exist more candies that can be crushed (ie. the board is stable), then return the current board.
+You need to perform the above rules until the board becomes stable, then return the current board.
+
+A:
+Algorithm goes into two parts:
+(1) First mark all the points which can be crashed
+    Have to loop through all colums and rows and find three consecutive pixels
+
+(2) Second apply the gravity:
+    This can be done using the same algorithm as Dutch Flag color partition i.e. keep the partition pointer 
+
