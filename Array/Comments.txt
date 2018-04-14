@@ -79,6 +79,49 @@ x4, y4 = size-x2-1, size-y2-1
 and be careful that 
 
 
+
+----------------------------------------------------------------------------------------------------------------------------------
+54. Spiral Matrix
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+
+For example,
+Given the following matrix:
+
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+You should return [1,2,3,6,9,8,7,4,5].
+
+A:
+Same as the sprial matrix II problem. 
+Loop over to peel off layers. 
+Make sure do the right thing when encounter m ==1, n==1 cases 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+59. Spiral Matrix II
+
+Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+
+For example,
+Given n = 3,
+
+You should return the following matrix:
+
+[
+     [ 1, 2, 3 ],
+     [ 8, 9, 4 ],
+     [ 7, 6, 5 ]
+    ]
+
+
+A:
+brute force O(N) solution. Same recursion as the rotation problem
+
+
 ----------------------------------------------------------------------------------------------------------------------------------
 62. Unique Paths
 A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
@@ -204,6 +247,21 @@ And we also keep a global largest value to be globalMax
 
 If we have the negative values, then we need to take care of the negative values as well
 so we keep track of a minimum
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+153. Find Minimum in Rotated Sorted Array
+
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+Find the minimum element.
+You may assume no duplicate exists in the array.
+
+
+A:
+No duplicates we can use binary search.
+Be carefuly with the length of the array. We could start with length 1 which we should return directly		                    
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -508,6 +566,25 @@ Two ways to do:
 (1) is to keep the cumulative sum and loop over all sub arrays, taking O(n^2) time and O(1) space
 (2) is to use hash map to record the sum of elements up to nums[i]
     we can find subarrays with sum k by checking nums[i]-nums[j]==k for j<i
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+562. Longest Line of Consecutive One in Matrix
+
+Given a 01 matrix M, find the longest line of consecutive one in the matrix. The line could be horizontal, vertical, diagonal or anti-diagonal.
+
+Input:
+[[0,1,1,0],
+ [0,1,1,0],
+ [0,0,0,1]]
+Output: 3
+
+
+A:
+Use DP. Keep table of four elements. 
+One for continuous row up to [i,j]. One for col, one for diag and one for anti-diag
+My sol could be simplified somewhat more. No need to initialize the first row
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
