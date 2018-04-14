@@ -24,6 +24,21 @@ just to notice for python we can use
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
+33. Search in Rotated Sorted Array
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
+You are given a target value to search. If found in the array return its index, otherwise return -1.
+You may assume no duplicate exists in the array.
+Your algorithm's runtime complexity must be in the order of O(log n).
+
+
+A:
+Binary search. Since we need to return -1 if no element found
+Pay attention to corner cases for length 0 and 1
+Forum also showed that while loop is better than recursion with function
+
+
+----------------------------------------------------------------------------------------------------------------------------------
 39. Combination Sum
 
 Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
@@ -47,19 +62,6 @@ Key is to realize that to avoid duplicates, we need to maintain an
 order strucutre in the constructed sequence 
 If we sort the candidates and constatnly compare it to the last element 
 of the current accumulated list, then naturally avoid duplicates
-
-
-----------------------------------------------------------------------------------------------------------------------------------
-56. Merge Intervals
-Given a collection of intervals, merge all overlapping intervals.
-
-For example,
-Given [1,3],[2,6],[8,10],[15,18],
-return [1,6],[8,10],[15,18].
-
-A:
-sort first with lambda function
-then just merge 
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -98,6 +100,20 @@ A:
 Same as the sprial matrix II problem. 
 Loop over to peel off layers. 
 Make sure do the right thing when encounter m ==1, n==1 cases 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+56. Merge Intervals
+Given a collection of intervals, merge all overlapping intervals.
+
+For example,
+Given [1,3],[2,6],[8,10],[15,18],
+return [1,6],[8,10],[15,18].
+
+A:
+sort first with lambda function
+then just merge 
 
 
 
@@ -154,6 +170,23 @@ use DP, essential to realize that we rely on the bounds [x,0] and [0,y] to do in
 path [i][j]= path[i-1][j]+path[i][j-1]
 Hence need to intialize them to be 0 if there is an obstacle behind. 
 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+64. Minimum Path Sum
+Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+
+Note: You can only move either down or right at any point in time.
+
+Example 1:
+[[1,3,1],
+ [1,5,1],
+  [4,2,1]]
+
+Given the above grid map, return 7. 
+
+A:
+Use DP, keep table of the min up to [i,j]
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -763,3 +796,30 @@ we use induction,
 a subarray can be sorted together iff max(subarray) == len(subarray)
 otherwise some larger element from later part of the array is mixed in and we will have to bring that to the end. 
 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+795. Number of Subarrays with Bounded Maximum
+
+We are given an array A of positive integers, and two positive integers L and R (L <= R).
+Return the number of (contiguous, non-empty) subarrays such that the value of the maximum array element in that subarray is at least L and at most R.
+Example :
+Input: 
+A = [2, 1, 4, 3]
+L = 2
+R = 3
+Output: 3
+Explanation: There are three subarrays that meet the requirements: [2], [2, 1], [3].
+
+Note:
+L, R  and A[i] will be an integer in the range [0, 10^9].
+The length of A will be in the range of [1, 50000].
+
+
+A:
+Mis-understood the problem at first hand
+We keep expanding the array with all elements <=R
+We should notice that for any element >R, the counting of consecutive subarrays will stop
+For a given subarray M, if an element is less than L, it could be combined with some near by element which is in between L and R
+Therefore, we should count the number of continuous subarrays K with less than L within each subarray that only contains 
+elements less than R. Then subtract K from the number of continuos sybarrays in M. 
