@@ -462,6 +462,24 @@ for an array that has  A[start] += inc and A[end+1] -= inc
 second path keep a sum and fill in the new array with the cumulative sum        
 
 
+
+----------------------------------------------------------------------------------------------------------------------------------
+380. Insert Delete GetRandom O(1)
+
+Design a data structure that supports all following operations in average O(1) time.
+insert(val): Inserts an item val to the set if not already present.
+remove(val): Removes an item val from the set if present.
+getRandom: Returns a random element from current set of elements. Each element must have the same probability of being returned.
+
+A:
+Key is the getRandom operation. For set we can already do insert and delete with O(1) time.
+Random we need indexing and hence need a list for this
+
+A few notes:
+python list pop takes O(1), append takes O(1), del takes O(n)
+python dic look up O(1), insert O(1), del O(1), make list O(n)
+
+
 ----------------------------------------------------------------------------------------------------------------------------------
 423. Reconstruct Original Digits from English
 Given a non-empty string containing an out-of-order English representation of digits 0-9, output the digits in ascending order.
@@ -684,6 +702,23 @@ If there are multiple answers, print any of them.
 A:
 for 1 to n-k-1 we don't do anything
 for n-k+1 to n, we have [n-k, n, n-k+1, n-1, ...], we get difference k, k-1, k-2, to 1 etc. 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+670. Maximum Swap
+Given a non-negative integer, you could swap two digits at most once to get the maximum valued number. Return the maximum valued number you could get.
+
+Input: 2736
+Output: 7236
+Explanation: Swap the number 2 and the number 7.
+
+
+A:
+O(n) time solution, loop over once to record the Maxium from [i:end]
+and then loop again to swap for the current event with the maximum in the rest of the 
+array with the largest index
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
