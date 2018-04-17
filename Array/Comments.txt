@@ -250,6 +250,32 @@ left.next = h2.next # links two sets
 return h1.next get rid off the starting dummy node
 
 
+
+----------------------------------------------------------------------------------------------------------------------------------
+90. Subsets II
+Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set).
+
+Note: The solution set must not contain duplicate subsets.
+
+For example,
+If nums = [1,2,2], a solution is:
+
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+
+
+A:
+same as the subset problem. But note here that we would need to output without duplicates.
+so build a dictionary first and then append based on the counts of each element
+
+
+
 ----------------------------------------------------------------------------------------------------------------------------------
 142. Linked List Cycle II
 Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
@@ -809,6 +835,24 @@ Your class will be called like this: MyCalendar cal = new MyCalendar(); MyCalend
 A:
 use BST to do the work. 
 Just rememeber the nodes could contain more things than just one number
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+731. My Calendar II
+Implement a MyCalendarTwo class to store your events. A new event can be added if adding the event will not cause a triple booking.
+Your class will have one method, book(int start, int end). Formally, this represents a booking on the half open interval [start, end), the range of real numbers x such that start <= x < end.
+A triple booking happens when three events have some non-empty intersection (ie., there is some time that is common to all 3 events.)
+For each call to the method MyCalendar.book, return true if the event can be added to the calendar successfully without causing a triple booking. Otherwise, return false and do not add the event to the calendar.
+Your class will be called like this: MyCalendar cal = new MyCalendar(); MyCalendar.book(start, end)
+
+
+A:
+The problem seems easy but has a lot tricks
+Pay attention to the details. It says no two conflict booking. It's ok to have C overlaps with A and B, while A and B do not overlap
+Can only solve it in O(n^2) haven't seen better answers
+Idea is to keep track of the current overlaps and the current calendar. 
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
