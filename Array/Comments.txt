@@ -78,6 +78,30 @@ If we sort the candidates and constatnly compare it to the last element
 of the current accumulated list, then naturally avoid duplicates
 
 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+40. Combination Sum II
+Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
+
+Each number in candidates may only be used once in the combination.
+
+Note:
+
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+
+Input: candidates = [10,1,2,7,6,1,5], target = 8,
+A solution set is:
+'''
+
+
+A:
+need sorted arrays to improve the running time
+use DP recurse on the smaller subset to find the good sum
+use set to return no duplicates events
+
+
 ----------------------------------------------------------------------------------------------------------------------------------
 48. Rotate Image
 You are given an n x n 2D matrix representing an image.
@@ -455,6 +479,24 @@ Sort takes O(nlogn), so let's do it
 Then it's a matter of increment i, j. Same problem as the three segements for triangle
 Do a reversed scan of k
 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+277. Find the Celebrity
+Suppose you are at a party with n people (labeled from 0 to n - 1) and among them, there may exist one celebrity. The definition of a celebrity is that all the other n - 1 people know him/her but he/she does not know any of them.
+Now you want to find out who the celebrity is or verify that there is not one. The only thing you are allowed to do is to ask questions like: "Hi, A. Do you know B?" to get information of whether A knows B. You need to find out the celebrity (or verify there is not one) by asking as few questions as possible (in the asymptotic sense).
+You are given a helper function bool knows(a, b) which tells you whether A knows B. Implement a function int findCelebrity(n), your function should minimize the number of calls to knows.
+Note: There will be exactly one celebrity if he/she is in the party. Return the celebrity's label if there is a celebrity in the party. If there is no celebrity, return -1.
+
+
+A:
+Two cases:
+(1) if the celebrity exists, since there is only one, we need only one loop to find it:
+we loop over all people and ask if the person knows the next.
+celebrity does not know anyone else, so the pointer will stop at him
+(2) if the celebrity does not exit, then we need to check for the person we get from (1)
+(a) if he happens to know anyone else and (b) if everyone knows him
 
 
 ----------------------------------------------------------------------------------------------------------------------------------

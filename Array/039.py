@@ -18,8 +18,8 @@ A solution set is:
 
 
 '''
-Use DP
-Key is to realize that to avoid duplicates, we need to maintain an
+Use DP and loop over the list many times
+Then the key is to realize that to avoid duplicates, we need to maintain an
 order strucutre in the constructed sequence 
 If we sort the candidates and constatnly compare it to the last element 
 of the current accumulated list, then naturally avoid duplicates
@@ -54,7 +54,6 @@ class Solution(object):
                     if len(acc)>0 and v<acc[-1]:
                         continue
                     recurse(cand_set,  target-v,  acc+[v])
-                    
                     
 
         recurse(  cand, target, [])
