@@ -269,6 +269,28 @@ Another solution from online is to use the first column and first row as storage
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
+74. Search a 2D Matrix
+Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
+
+Integers in each row are sorted from left to right.
+The first integer of each row is greater than the last integer of the previous row.
+
+Input:
+matrix = [
+  [1,   3,  5,  7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 50]
+]
+target = 3
+Output: true
+
+
+A:
+use binary search and modulo to find the indicies        
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
 75. Sort Colors
 
 Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.
@@ -360,6 +382,27 @@ A:
 same as the subset problem. But note here that we would need to output without duplicates.
 so build a dictionary first and then append based on the counts of each element
 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+120. Triangle
+Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+
+For example, given the following triangle
+
+[
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+]
+ 
+
+The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+
+
+A:
+We can solve in-place with DP. So O(MN) time and O(1) space
 
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -1008,6 +1051,35 @@ go through the list once,
 we use induction, 
 a subarray can be sorted together iff max(subarray) == len(subarray)
 otherwise some larger element from later part of the array is mixed in and we will have to bring that to the end. 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+792. Number of Matching Subsequences
+
+Given string S and a dictionary of words words, find the number of words[i] that is a subsequence of S.
+
+
+Example :
+Input: 
+S = "abcde"
+words = ["a", "bb", "acd", "ace"]
+Output: 3
+Explanation: There are three words in words that are a subsequence of S: "a", "acd", "ace".
+
+Note:
+
+All words in words and S will only consists of lowercase letters.
+The length of S will be in the range of [1, 50000].
+The length of words will be in the range of [1, 5000].
+The length of words[i] will be in the range of [1, 50].
+
+A:
+keep a dictionary for words and which letter they are waiting for        
+then if we see the needed first word, elimnate that first letter 
+and re-organize the dictionary
+If the word has length one and meet its needed letter then we can 
+increment the counter
 
 
 
